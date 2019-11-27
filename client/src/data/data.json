@@ -1,0 +1,84 @@
+{
+    "status": "ok",
+    "totalResults": 66501,
+    "articles": [
+        {
+            "source": {
+                "id": null,
+                "name": "Lifehacker.com"
+            },
+            "author": "David Murphy",
+            "title": "Every Tech Special Section We've Published So Far",
+            "description": "We published a ton of stories at Lifehacker, no question there. And while I always appreciate those with a strong Google game, you shouldn’t have to bust out your geek skills on a search engine to find the most important articles about your favorite tech topi…",
+            "url": "https://lifehacker.com/every-tech-special-section-weve-published-so-far-1839478368",
+            "urlToImage": "https://i.kinja-img.com/gawker-media/image/upload/c_fill,f_auto,fl_progressive,g_center,h_675,pg_1,q_80,w_1200/cnbzzuo4fbbqy5pj7jyv.jpg",
+            "publishedAt": "2019-10-31T20:00:00Z",
+            "content": "We published a ton of stories at Lifehacker, no question there. And while I always appreciate those with a strong Google game, you shouldnt have to bust out your geek skills on a search engine to find the most important articles about your favorite tech topic… [+2612 chars]"
+        },
+        {
+            "source": {
+                "id": "engadget",
+                "name": "Engadget"
+            },
+            "author": "Andrew Tarantola",
+            "title": "How tech can improve everyday life for the elderly",
+            "description": "Thanks to steady advances in modern medicine, humans are living longer than ever, but what's the point of passing that centennial mark if you can't enjoy your platinum years? Just because your body doesn't work as well as it did when you were 20 and practical…",
+            "url": "https://www.engadget.com/2019/11/07/best-accessibility-tech-for-the-elderly/",
+            "urlToImage": "https://o.aolcdn.com/images/dims?thumbnail=1200%2C630&quality=80&image_uri=https%3A%2F%2Fo.aolcdn.com%2Fimages%2Fdims%3Fresize%3D2000%252C2000%252Cshrink%26image_uri%3Dhttps%253A%252F%252Fs.yimg.com%252Fos%252Fcreatr-uploaded-images%252F2019-10%252Ff9abaae0-fb0b-11e9-be07-97715d703324%26client%3Da1acac3e1b3290917d92%26signature%3D895e2abb142f1021cb87ebea65792e8480b097df&client=amp-blogside-v2&signature=bf37765c461e6d29de768d9819b89ea74eb716e4",
+            "publishedAt": "2019-11-07T14:00:00Z",
+            "content": "Mobility\r\nYou're never too old to get back into shape. Exercise offers folks of all ages a slew of physical, emotional and mental health benefits. Now, that doesn't mean you need to be hitting the gym like Schwarzenegger (though if you can, more power to you)… [+4175 chars]"
+        },
+        {
+            "source": {
+                "id": null,
+                "name": "Lifehacker.com"
+            },
+            "author": "David Murphy",
+            "title": "How Can I Keep an Old All-In-One PC Running Quickly and Efficiently?",
+            "description": "I’m always thrilled to get “help me out with a tech problem” letters in my inbox, and I’ve had quite a few lately related to PC upkeep—likely prompted by this Tech 911 question I answered last month. I’m back with another one today, and it’s a twist on the ol…",
+            "url": "https://lifehacker.com/how-can-i-keep-an-old-all-in-one-pc-running-fast-and-ef-1839699455",
+            "urlToImage": "https://i.kinja-img.com/gawker-media/image/upload/c_fill,f_auto,fl_progressive,g_center,h_675,pg_1,q_80,w_1200/sfxtcxohcnuuo4y2q6l9.jpg",
+            "publishedAt": "2019-11-08T14:00:00Z",
+            "content": "Im always thrilled to get help me out with a tech problem letters in my inbox, and Ive had quite a few lately related to PC upkeeplikely prompted by this Tech 911 question I answered last month. Im back with another one today, and its a twist on the ol How do… [+5009 chars]"
+        },
+        {
+            "source": {
+                "id": "wired",
+                "name": "Wired"
+            },
+            "author": "Louise Matsakis",
+            "title": "Warren Targets ‘Revolving Door’ Between Government and Tech",
+            "description": "Warren's latest plan would prohibit large companies from hiring senior government employees right out of office—and she comes out swinging against Facebook.",
+            "url": "https://www.wired.com/story/elizabeth-warren-facebook-government-workers/",
+            "urlToImage": "https://media.wired.com/photos/5db73da2f348560008125fcb/191:100/w_1280,c_limit/Biz-warrenflag-1177499311.jpg",
+            "publishedAt": "2019-10-29T13:00:00Z",
+            "content": "Elizabeth Warren announced a new plan to fight corruption in Washington on Tuesday: The Democratic presidential candidate wants to ban giant corporations from hiring senior government officials until they have been out of public office for at least four years… [+5033 chars]"
+        },
+        {
+            "source": {
+                "id": "wired",
+                "name": "Wired"
+            },
+            "author": "Tom Simonite",
+            "title": "Report: The Government and Tech Need to Cooperate on AI",
+            "description": "It also warns that AI-enhanced national security apparatus like autonomous weapons and surveillance systems will raise ethical questions.",
+            "url": "https://www.wired.com/story/report-government-and-tech-need-cooperate-ai/",
+            "urlToImage": "https://media.wired.com/photos/5dc0903041c1680009813bd9/191:100/w_1280,c_limit/Biz-Schmidt-h_15275095.jpg",
+            "publishedAt": "2019-11-05T12:00:00Z",
+            "content": "Americas national security depends on the government getting access to the artificial intelligence breakthroughs made by the technology industry.\r\nSo says a report submitted to Congress Monday by the National Security Commission on AI. The group, which includ… [+3854 chars]"
+        },
+        {
+            "source": {
+                "id": "mashable",
+                "name": "Mashable"
+            },
+            "author": "Saavon Smalls",
+            "title": "Experiment finds people trust tech too much",
+            "description": "The results of a Texas Tech experiment found that people rely on tech being \"honest\" and may be apprehensive to call it out. Read more... More about Tech, Mashable Video, Research, Humans, and Texas Tech",
+            "url": "https://mashable.com/video/ttu-tech-reliance-honesty/",
+            "urlToImage": "https://mondrian.mashable.com/2019%252F11%252F05%252Fc9%252F662c23b86e964077912e405f5a2b5ea7.1dd22.png%252F1200x630.png?signature=1xnfti0csBHWpe0Yl3eWfNlTTwU=",
+            "publishedAt": "2019-11-05T19:05:02Z",
+            "content": null
+        }
+    ]
+}
