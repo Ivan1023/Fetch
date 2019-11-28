@@ -4,26 +4,32 @@ import './Article.scss'
 
 
 class Card extends React.Component {
+    state = {
+        isOnline: window.navigator.onLine
+    }
     
+
+
     clickHandler = (event) => {
         event.preventDefault()
 
-        window.open(this.props.article.url)
-    
-        // Axios.get('https://lifehacker.com/every-tech-special-section-weve-published-so-far-1839478368')
-        //     .then(function (response) {
-        //         window.open(this.props.article.url)
-        //         alert('request went through')
-        //     })
-        //     .catch(function(error) {
-        //         alert('Something went wrong')
-        //     })
+        const cors = "https://cors-anywhere.herokuapp.com/"
+
+        Axios.get( cors + 'https://google.com', {
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            } 
+        })
+            .then((response) => {
+                window.open(this.props.article.url)
+                alert('request went through')
+            })
+            .catch(function(error) {
+                alert(error)
+            })
     }
 
     render(){
-
-        const link = this.props.article.url
-
     
         return(
             <article className="article">
