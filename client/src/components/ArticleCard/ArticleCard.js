@@ -1,32 +1,19 @@
 import React from 'react'
-import Axios from 'axios'
 import './Article.scss'
 
 
 class Card extends React.Component {
-    state = {
-        isOnline: window.navigator.onLine
-    }
-    
 
 
     clickHandler = (event) => {
         event.preventDefault()
-
-        const cors = "https://cors-anywhere.herokuapp.com/"
-
-        Axios.get( cors + 'https://google.com', {
-            headers: {
-                'X-Requested-With': 'XMLHttpRequest'
-            } 
-        })
-            .then((response) => {
-                window.open(this.props.article.url)
-                alert('request went through')
-            })
-            .catch(function(error) {
-                alert(error)
-            })
+        //window.navigator.onLine is a console state to see if internet is available
+        // check to see if window.navigator.onLine has internet connection
+        if(window.navigator.onLine === true){
+            window.open(this.props.article.url)
+        } else {
+            alert("Error");
+        }
     }
 
     render(){
