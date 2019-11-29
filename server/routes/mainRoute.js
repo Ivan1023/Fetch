@@ -9,6 +9,8 @@ router.post('/', (request, response)=>{
     
     const data = request.body.url;
 
+    //https://www.npmjs.com/package/article-parser
+    // article parser to strip content from url page and send back in an array of objects
     extract(data).then((article) => {
       console.log(article);
       response.send(article);

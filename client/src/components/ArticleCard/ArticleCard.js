@@ -12,7 +12,16 @@ class Card extends React.Component {
         if(window.navigator.onLine === true){
             window.open(this.props.article.url)
         } else {
-            alert("Error");
+            // console.log(sessionStorage.parsedContent)
+            const storeData = sessionStorage.getItem("parsedContent");
+
+            const findObject = JSON.parse(storeData).find(({data})=>{
+                if(data.url === this.props.article.url){
+                    return data;
+                }
+            })
+
+            console.log(findObject)
         }
     }
 
