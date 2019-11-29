@@ -21,10 +21,10 @@ class Card extends React.Component {
         return(
             <article className="article">
                 <img onClick={this.clickHandler} className="article__img-container" src={this.props.article.urlToImage} alt="Article Cover"></img>
-                <h1 onClick={this.clickHandler}>{this.props.article.title}</h1>
-                <p>{this.props.article.description}</p>
-                <span>{this.props.article.source.name}</span>
-                <span>{this.props.article.publishedAt}</span>
+                <h2 className="article__header" onClick={this.clickHandler}>{this.props.article.title}</h2>
+                <p className="article__description">{this.props.article.description}</p>
+                <span className="article__source">{this.props.article.source.name}</span>
+                <span className="article__date">{this.props.article.publishedAt}</span>
             </article>
         )
     }

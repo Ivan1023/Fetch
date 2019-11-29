@@ -13,26 +13,28 @@ class Main extends React.Component {
         
         Axios.get('https://newsapi.org/v2/everything?q=tech&pageSize=40&apiKey=' + apiKey)
         .then(response => {
-            
+            this.parse(response.data.articles)
             this.setState({
                 articleData: response.data.articles
             });
-            this.parse(response.data.articles)
-            
         })
         .catch(response => {
-            alert('Something went wrong')
+            alert(response)
         })
     }
 
     parse(article){
-        const articleUrls = article.map((article)=>{
-            return article.url
-        })
+        const articleUrls = []
+        
+        article.forEach(element => {
+            articleUrls.push(Axios.post('http://localhost:8080/',{
+                "url" : element.url
+             }));
+        });
         console.log(articleUrls)
          
         //  Axios.post('http://localhost:8080/',{
-        //      "url": this.article
+        //     "url" : article.url
         //  })
         //  .then(response => {
         //      console.log(response)

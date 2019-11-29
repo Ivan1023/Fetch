@@ -3,14 +3,13 @@ const router = express.Router();
 const {extract} = require('article-parser');
 
 
-router.get('/', (request, response)=>{
+router.post('/', (request, response)=>{
     
-    // const url = 'https://goo.gl/MV8Tkh';
- 
-    const data = request.body;
-    console.log(data)
+    console.log('======You have reached the server======')
+    
+    const data = request.body.url;
 
-    extract(url).then((article) => {
+    extract(data).then((article) => {
       console.log(article);
       response.send(article);
 
