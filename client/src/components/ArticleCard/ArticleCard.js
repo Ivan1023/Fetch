@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import './Article.scss'
 
 
@@ -21,7 +22,8 @@ class Card extends React.Component {
                 }
             })
 
-            console.log(findObject)
+            return findObject;
+            // console.log(findObject)
         }
     }
 
@@ -29,7 +31,7 @@ class Card extends React.Component {
     
         return(
             <article className="article">
-                <img onClick={this.clickHandler} className="article__img-container" src={this.props.article.urlToImage} alt="Article Cover"></img>
+                <Link to={`/offline/${this.props.article.title}`}><img className="article__img-container" src={this.props.article.urlToImage} alt="Article Cover"></img></Link>
                 <h2 className="article__header" onClick={this.clickHandler}>{this.props.article.title}</h2>
                 <p className="article__description">{this.props.article.description}</p>
                 <span className="article__source">{this.props.article.source.name}</span>

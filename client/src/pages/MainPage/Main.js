@@ -9,13 +9,11 @@ class Main extends React.Component {
     }
 
     componentDidMount() {
-        // api key is stored in .env file
-        const apiKey = process.env.REACT_APP_GOOGLE_API_KEY
-
-        //get google api
-        Axios.get('https://newsapi.org/v2/everything?q=tech&pageSize=40&apiKey=' + apiKey)
+        
+        //get google api via express server
+        Axios.get('http://localhost:8080/topstories')
         .then(response => {
-            //call parse functiont o start parsing content from url page
+            //call parse function to start parsing content from url page
             this.parse(response.data.articles)
 
             // set state of all article cards to display data
@@ -32,7 +30,7 @@ class Main extends React.Component {
         const articleUrls = []
         //looping through the response that we got from the API to extract url from object then posting to backenfd 
         article.forEach(element => {
-            articleUrls.push(Axios.post('http://localhost:8080/',{
+            articleUrls.push(Axios.post('http://localhost:8080/parse',{
                 "url" : element.url
              }));
         });
@@ -41,16 +39,15 @@ class Main extends React.Component {
         Axios.all(articleUrls).then((data) => {
             //TODO: map data to reduce the amount of data being send to session storage
             console.log(data);
-            
+
             sessionStorage.setItem("parsedContent",JSON.stringify(data));
         });
         console.log(articleUrls)
-        
     }
 
 
     render(){
-        
+        console.log(this.state)
         return(
             <div className="main">
                 {this.state.articleData ? this.state.articleData.map(articleArray => (<Card key={articleArray.url} article={articleArray}/>)): null }
