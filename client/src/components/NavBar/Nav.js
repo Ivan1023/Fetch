@@ -1,21 +1,49 @@
 import React from 'react'
-import Menu from '../../assets/icons/bars-solid.svg'
+import menuIcon from '../../assets/icons/bars-solid.svg'
 import Search from '../../assets/icons/Icon-search.svg'
+import { slide as Menu } from 'react-burger-menu'
+import { Link } from 'react-router-dom';
 import './Nav.scss'
 
 
 class Nav extends React.Component {
+    state = {
+        menuOpen: false
+    }
+
+    handleStateChange (state) {
+        this.setState({menuOpen: state.isOpen})  
+    }
+
+    closeMenu () {
+        this.setState({menuOpen: false})
+    }
+
+    toggleMenu () {
+        this.setState(state => ({menuOpen: !state.menuOpen}))
+    }
+
+
     render(){
         return(
             <nav className="nav">
                 <div className="nav__container">
-                    <div className="nav__menu">
-                        <img src={Menu} alt="Menu" className="nav__menu__img"></img>
-                    </div>
+                    <Menu 
+                        isOpen={this.state.menuOpen}
+                        onStateChange={(state) => this.handleStateChange(state)}
+                        >
+                        <p className="logo">Fetch</p>
+                        <Link to={'/profile'}><p onClick={() => this.closeMenu()}>Profile</p></Link>
+                        <p onClick={() => this.closeMenu()} className="spacing">Setting</p>
+                        <p onClick={() => this.closeMenu()}>Entertainment</p>
+                        <p onClick={() => this.closeMenu()}>General</p>
+                        <p onClick={() => this.closeMenu()}>Health</p>
+                        <p onClick={() => this.closeMenu()}>Science</p>
+                        <p onClick={() => this.closeMenu()}>Sports</p>
+                        <p onClick={() => this.closeMenu()}>Technology</p>
+                    </Menu>
+                        {/* <img src={menuIcon} alt="Menu Icon" className="nav__menu__img" onClick={() => this.toggleMenu()}></img> */}
                     <p className="nav__logo">Fetch</p>
-                </div>
-                <div className="nav__search">
-                    <img src={Search}></img>
                 </div>
             </nav>
         )
