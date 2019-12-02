@@ -1,14 +1,15 @@
 import React from 'react'
 import MenuBar from '../MenuBar/MenuBar'
+import './Setting.scss'
 
 class Setting extends React.Component{
     render(){
         return (
-            <div>
+            <div className="profile">
                 <MenuBar/>
-                <div>
-                    <p>Setting</p>
-                    <p>Test</p>
+                <div className="profile__setting">
+                    <p>Account Storage</p>
+                    <p>77% used - 11.62 GB of 15 GB</p>
                 </div>
             </div>
         )

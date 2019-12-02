@@ -1,0 +1,13 @@
+.general {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding:26px 20px;
+    
+    &__textbox{
+        outline: none;
+        resize: none;
+    }
+
+
+}

@@ -32,9 +32,9 @@ class Nav extends React.Component {
                         isOpen={this.state.menuOpen}
                         onStateChange={(state) => this.handleStateChange(state)}
                         >
-                        <p className="logo">Fetch</p>
+                        <Link to={'/'}><p onClick={() => this.closeMenu()} className="logo">Fetch</p></Link>
                         <Link to={'/profile'}><p onClick={() => this.closeMenu()}>Profile</p></Link>
-                        <p onClick={() => this.closeMenu()} className="spacing">Setting</p>
+                        <Link to={'/setting'}><p onClick={() => this.closeMenu()} className="spacing">Setting</p></Link>
                         <p onClick={() => this.closeMenu()}>Entertainment</p>
                         <p onClick={() => this.closeMenu()}>General</p>
                         <p onClick={() => this.closeMenu()}>Health</p>
