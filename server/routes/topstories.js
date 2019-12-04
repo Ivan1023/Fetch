@@ -12,7 +12,10 @@ router.get('/', (request, response) => {
         country: 'us',
         pageSize: '10'
       }).then(topArticle => {
-        console.log(topArticle);
+
+        // const articleUUID = topArticle.
+
+        console.log('Object',topArticle);
         response.send(topArticle)
     });
 });

@@ -6,7 +6,7 @@ class Card extends React.Component {
 
     urlHandler = (event) =>{
         event.preventDefault()
-        this.props.function(this.props.article.url)
+        this.props.function(this.props.article)
     }
 
     render(){     

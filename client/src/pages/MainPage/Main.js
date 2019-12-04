@@ -49,25 +49,33 @@ class Main extends React.Component {
         });
     }
 
-    renderArticle = (link) => {
+    renderArticle = (article) => {
+
+        console.log(article)
+
         if(window.navigator.onLine === true){
-            window.open(link);
+            window.open(article.url);
         } else {
             const storeData = sessionStorage.getItem("parsedContent");
+            // console.log(storeData)
 
             const findObject = JSON.parse(storeData).find(({data})=>{
-                console.log('URL', data.url, link)
-                if(data.url === link){
-                    
-                    return data;
+                // console.log('IMAGE', data.image, article.urlToImage, "URL", data.url, article.url)
+                if (
+                    data.image === article.urlToImage 
+                    || data.url === article.url 
+                    ||data.description === article.description 
+                    || data.title === article.title
+                    ) {
+                    return data
                 }
             })
 
-            console.log('FIND OBJ', link, findObject)
+            console.log('FIND OBJ', article, findObject)
             
 
             if (!this.state.offlineArticle
-                || link !== this.state.offlineArticle.url) {
+                || article !== this.state.offlineArticle.url) {
                 this.setState({offlineArticle: findObject.data}, () => {
                     console.log('SET OFFLINE', this.state.offlineArticle)
                 });
@@ -75,6 +83,35 @@ class Main extends React.Component {
             }
         }
     }
+
+        // if(window.navigator.onLine === true){
+        //     window.open(link);
+        // } else {
+        //     const storeData = sessionStorage.getItem("parsedContent");
+
+        //     const findObject = JSON.parse(storeData).find(({data})=>{
+        //         console.log('URL', data.url, link)
+        //         // if (`${data.author}${data.title}` === `${article.author}${article.title}`) {
+                    
+        //         // }
+        //         if(data.url === link){
+                    
+        //             return data;
+        //         }
+        //     })
+
+        //     console.log('FIND OBJ', link, findObject)
+            
+
+        //     if (!this.state.offlineArticle
+        //         || link !== this.state.offlineArticle.url) {
+        //         this.setState({offlineArticle: findObject.data}, () => {
+        //             console.log('SET OFFLINE', this.state.offlineArticle)
+        //         });
+                
+        //     }
+        // }
+    
 
     categoryRoute = () => {
         const route = this.props.match.params
