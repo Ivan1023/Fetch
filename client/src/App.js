@@ -21,6 +21,7 @@ function App() {
         <Route path="/profile" component={Profile}/>
         <Route path="/setting" exact component={Setting}/>
         <Route path="/interest" exact component={Interest}/>
+        <Route path="/:category" exact component={Main}/>
       </Switch>
     </BrowserRouter>
   );

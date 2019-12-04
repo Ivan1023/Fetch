@@ -1,5 +1,4 @@
 import React from 'react'
-import MenuBar from '../MenuBar/MenuBar'
 import './General.scss'
 
 class General extends React.Component{
