@@ -8,6 +8,7 @@ const health = require('./routes/healthRoute')
 const science = require('./routes/scienceRoute')
 const sports = require('./routes/sportsRoute')
 const technology = require('./routes/technologyRoute')
+const search = require('./routes/searchRoute')
 
 
 app.use(express.json());
@@ -19,6 +20,7 @@ app.use('/health', health)
 app.use('/science', science)
 app.use('/sports', sports)
 app.use('/technology', technology)
+app.use('/search', search)
 
 app.listen(8080,() => {
     console.log("------Server is ready-------")

@@ -11,7 +11,7 @@ class Interest extends React.Component{
                 <ul className="profile__list">
                     <div className="profile__switch-container"><li className="profile__items">History</li><Switch/></div>
                     <div className="profile__switch-container"><li className="profile__items">Websites</li><Switch/></div>
-                    <div className="profile__switch-container"><li className="profile__items">Food</li><Switch/></div>
+                    <div className="profile__switch-container"><li className="profile__items">Space</li><Switch/></div>
                     <div className="profile__switch-container"><li className="profile__items">Computer</li><Switch/></div>
                     <div className="profile__switch-container"><li className="profile__items">Finance</li><Switch/></div>
                 </ul>

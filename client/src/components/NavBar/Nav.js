@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import './Nav.scss';
 import logoOrangeBackground from '../../assets/logo/fetchOrange.png';
 import logoOrangeText from '../../assets/logo/fetchOrangeText.png';
+import search from '../../assets/icons/Icon-search.svg'
 
 class Nav extends React.Component {
     state = {
@@ -24,6 +25,7 @@ class Nav extends React.Component {
 
 
     render(){
+        // console.log(this.props.function)
         return(
             <nav className="nav">
                 
@@ -40,10 +42,15 @@ class Nav extends React.Component {
                         <Link to={'/science'}><p onClick={() => this.closeMenu()}>Science</p></Link>
                         <Link to={'/sports'}><p onClick={() => this.closeMenu()}>Sports</p></Link>
                         <Link to={'/technology'}><p onClick={() => this.closeMenu()}>Technology</p></Link>
+                        <Link to={'/search'}>
+                            <form className="nav__form">
+                                <textarea className="nav__search" type="text" placeholder="Search"></textarea>
+                                <img className="nav__button" onClick={() => this.closeMenu()} src={search}></img>
+                            </form>
+                        </Link>
                     </Menu>
-                        {/* <img src={menuIcon} alt="Menu Icon" className="nav__menu__img" onClick={() => this.toggleMenu()}></img> */}
                     <div className="nav__logo">
-                        <img src={logoOrangeBackground} className="nav__logo"></img>
+                        <Link to={'/'}><img src={logoOrangeBackground} className="nav__logo"></img></Link>
                     </div>
                 
             </nav>

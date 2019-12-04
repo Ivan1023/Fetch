@@ -12,8 +12,7 @@ class Main extends React.Component {
     }
 
     componentDidMount() {
-        
-        //get google api via express server
+        // get google api via express server
         Axios.get('http://localhost:8080/topstories')
         .then(response => {
             //call parse function to start parsing content from url page
@@ -23,8 +22,25 @@ class Main extends React.Component {
             this.setState({
                 articleData: response.data.articles
             });
-            // sessionStorage.setItem("stateContent",JSON.stringify(response.data.articles));
 
+        })
+        .catch(response => {
+            alert(response)
+        })
+    }
+
+    getCategories = () => {
+        const route = this.props.match.params
+
+        Axios.get('http://localhost:8080/' + route.category || 'topstories')
+        .then(response => {
+            //call parse function to start parsing content from url page
+            this.parse(response.data.articles)
+
+            // set state of all article cards to display data
+            this.setState({
+                articleData: response.data.articles
+            });
         })
         .catch(response => {
             alert(response)
@@ -63,9 +79,9 @@ class Main extends React.Component {
                 // console.log('IMAGE', data.image, article.urlToImage, "URL", data.url, article.url)
                 if (
                     data.image === article.urlToImage 
-                    || data.url === article.url 
-                    ||data.description === article.description 
-                    || data.title === article.title
+                    ||  data.url === article.url 
+                    ||  data.description === article.description 
+                    ||  data.title === article.title
                     ) {
                     return data
                 }
@@ -83,40 +99,18 @@ class Main extends React.Component {
             }
         }
     }
+   
 
-        // if(window.navigator.onLine === true){
-        //     window.open(link);
-        // } else {
-        //     const storeData = sessionStorage.getItem("parsedContent");
-
-        //     const findObject = JSON.parse(storeData).find(({data})=>{
-        //         console.log('URL', data.url, link)
-        //         // if (`${data.author}${data.title}` === `${article.author}${article.title}`) {
-                    
-        //         // }
-        //         if(data.url === link){
-                    
-        //             return data;
-        //         }
-        //     })
-
-        //     console.log('FIND OBJ', link, findObject)
-            
-
-        //     if (!this.state.offlineArticle
-        //         || link !== this.state.offlineArticle.url) {
-        //         this.setState({offlineArticle: findObject.data}, () => {
-        //             console.log('SET OFFLINE', this.state.offlineArticle)
-        //         });
-                
-        //     }
-        // }
-    
-
-    categoryRoute = () => {
+    componentDidUpdate(prevProps){
         const route = this.props.match.params
-        //get google api via express server
-        Axios.get('http://localhost:8080' + route)
+        console.log('PREV', prevProps)
+        
+        //prevents infinite loop 
+        if (prevProps.match.params.category === route.category) return;
+
+        // this.getCategories()
+        // get google api via express server
+        Axios.get('http://localhost:8080/' + route.category || 'topstories')
         .then(response => {
             //call parse function to start parsing content from url page
             this.parse(response.data.articles)
@@ -131,23 +125,12 @@ class Main extends React.Component {
         })
     }
 
-
     render(){
-        // const stateData = sessionStorage.getItem("stateContent");
-        // const stateObject = JSON.parse(stateData);
-        // console.log(stateObject)
-        // console.log(this.state.offlineArticle) // passing url back from article card
+        
         console.log(this.props.match.params) // for sidebar search
         return(
             //render articles if internet is true, if not then render offline article once clicked
             <div className="main">
-                {/* {window.navigator.onLine ? (
-                    stateObject ? stateObject.map(articleArray => (<Card key={articleArray.url} article={articleArray} function={this.renderArticle}/>)): null 
-                    ) : (
-                        <OfflineMode data={this.state.offlineArticle}/>
-                    )
-                } */}
-
                 {window.navigator.onLine ? (
                     this.state.articleData ? this.state.articleData.map(articleArray => (<Card key={articleArray.url} article={articleArray} function={this.renderArticle}/>)): null 
                     ) : (
