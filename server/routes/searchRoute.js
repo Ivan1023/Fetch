@@ -4,6 +4,7 @@ const NewsAPI = require('newsapi');
 const newsapi = new NewsAPI('4f392a4b91624d49b1e930facf602dd7');
 
 router.get('/', (request, response) => {
+  console.log(request)
     newsapi.v2.everything({
         q: response,
         sources: '',

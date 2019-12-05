@@ -4,11 +4,30 @@ import './OfflineMode.scss'
 
 
 class Offline extends React.Component {
+    state = {
+        offlineArticle: null
+    }
+
+    componentDidMount(){
+        const storeData = sessionStorage.getItem("parsedContent");
+
+        const findObject = JSON.parse(storeData).find(({data})=>{            
+            if(this.props.match.params.category === data.id){
+                return data;
+            }
+        })
+
+        if (!this.state.offlineArticle
+            || this.props.match.params.category !== this.state.offlineArticle.id) {
+            this.setState({offlineArticle: findObject.data})
+        }
+    }
+
     render() {
         return(
-            <div>
+            <div className="container">
                 <p>Offline Mode</p>
-                <div className="content" dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.props.data.content)}}></div>
+                {this.state.offlineArticle ? <div className="content" dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.offlineArticle.content)}}></div> : null}
             </div>
         )
     }

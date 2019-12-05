@@ -17,7 +17,7 @@ function App() {
       <Switch>
         <Route path="/" exact component={Main}/>
         {/* <Route path="/offline/:id" render={clickHandler(props)}/> */}
-        <Route path="/offline/:id" render={(props) => <Offline {...props}/>}/>
+        <Route path="/offline/:category?" render={(props) => <Offline {...props}/>}/>
         <Route path="/profile" component={Profile}/>
         <Route path="/setting" exact component={Setting}/>
         <Route path="/interest" exact component={Interest}/>

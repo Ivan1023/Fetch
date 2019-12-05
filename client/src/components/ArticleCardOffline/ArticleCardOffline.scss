@@ -1,0 +1,29 @@
+
+.article {
+    width: 100%;
+    box-shadow: 5px 5px 25px rgb(224, 224, 224);
+    border-radius: 10px;
+    margin: 15px 0;
+
+    &__img-container {
+        width: 100%;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    &__header {
+        margin: 10px 8px;
+    }
+
+    &__description {
+        font-size: 12px;
+        margin: 10px 8px;
+    }
+
+    &__source, &__date {
+        font-size: 10px;
+        margin: 10px 8px;
+    }
+
+
+}
