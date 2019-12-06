@@ -31,10 +31,11 @@
       border-bottom-left-radius: 4px;
       border: none;
       resize: none;
+      outline: none;
       text-align: center;
       padding: 10px 0 0 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      font-size: 16px;
+      font-size: 12px;
     }
 
     &__button {
@@ -48,10 +49,14 @@
     }
     
     &__form{
-      display: flex;
+      display: flex !important;
       margin-bottom: 20px;
       border: 1px solid rgb(219, 219, 219);
       border-radius: 4px;
+    }
+
+    &__a {
+      height: 0;
     }
 }
 
@@ -114,7 +119,7 @@
    
   /* Individual item */
   .bm-item {
-    display: inline-block;
+    // display: inline-block;
     outline: none;
   }
    

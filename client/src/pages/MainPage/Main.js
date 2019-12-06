@@ -2,15 +2,16 @@ import React from 'react'
 import Axios from 'axios'
 import Card from '../../components/ArticleCard/ArticleCard'
 import CardOffline from '../../components/ArticleCardOffline/ArticleCardOffline'
+import search from '../../assets/icons/Icon-search.svg'
 import './Main.scss'
 
 class Main extends React.Component {
     state = {
         articleData: [],
         articleLink: ''
-        // offlineArticle: null
     }
 
+    
     componentDidMount() {
         // get google api via express server
         Axios.get('http://localhost:8080/topstories')
@@ -43,10 +44,34 @@ class Main extends React.Component {
              }));
         });
 
+        const route = this.props.match.params
+
         // axios all is waiting for the axios post to finish before running the session storage
         Axios.all(articleUrls).then((data) => {
-            sessionStorage.setItem("parsedContent",JSON.stringify(data));
+            sessionStorage.setItem(this.parseCategory(route),JSON.stringify(data));
         });
+    }
+
+    parseCategory = (data) => {
+        
+        if (data.category === "entertainment"){
+            return "entertainmentParsedContent"
+        }
+        if (data.category === "health"){
+            return "healthParsedContent"
+        }
+        if (data.category === "science"){
+            return "scienceParsedContent"
+        }
+        if (data.category === "sports"){
+            return "sportsParsedContent"
+        }
+        if (data.category === "technology"){
+            return "technologyParsedContent"
+        }
+        if (data.category === "topstories" || ""){
+            return "parsedContent"
+        }
     }
 
     renderArticle = (article) => {
@@ -55,7 +80,15 @@ class Main extends React.Component {
             window.open(article.url);
         } else {
             // navigate to a whole new page for Offline Content
-            this.props.history.push(`/offline/${article.id}`);
+            this.props.history.push(`/offline/${this.category()}/${article.id}`);
+        }
+    }
+
+    category = () => {
+        if(this.props.match.params !== null || "undefined") {
+            return this.props.match.params.category
+        } else {
+            return "topstories"
         }
     }
    
@@ -101,10 +134,12 @@ class Main extends React.Component {
         if (data.category === "technology"){
             return "technologyContent"
         }
+        if (data.category === "topstories" || ""){
+            return "topstoriesContent"
+        }
     }
 
     render(){
-        // console.log(this.state.articleData)
         const categoryName = this.props.match.params
         const clickedCategory = sessionStorage.getItem(this.findCategory(categoryName));
         return(
@@ -116,8 +151,7 @@ class Main extends React.Component {
                     JSON.parse(clickedCategory).map(articleArray => (<CardOffline key={articleArray.url} article={articleArray} function={this.renderArticle}/>))
                     )
                 }
-
-                {/* {this.state.articleData ? this.state.articleData.map(articleArray => (<Card key={articleArray.url} article={articleArray} function={this.renderArticle}/>)): null } */}
+                <button className="main__search" alt="search icon"><img className="main__button" src={search}/></button>
             </div>
         )
     }

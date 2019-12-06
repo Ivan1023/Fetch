@@ -20,7 +20,7 @@ app.use('/health', health)
 app.use('/science', science)
 app.use('/sports', sports)
 app.use('/technology', technology)
-app.use('/search', search)
+// app.use('/search', search)
 
 app.listen(8080,() => {
     console.log("------Server is ready-------")

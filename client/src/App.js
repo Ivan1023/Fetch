@@ -8,16 +8,31 @@ import Setting from './components/Settings/Setting'
 import Interest from './components/Interest/Interest'
 import './App.scss';
 
-function App() {
-  
+class App extends React.Component {
+//   state = {
+//     search: ""
+//   }
+
+//   submitHandler = (childData) => {
+//     // event.preventDefault()
+
+//     // const searchValue = event.target.search
+//     // console.log(searchValue)
+
+//     this.setState({search : childData})
+    
+// }
+render () {
+  // console.log(this.state);
   
   return (
     <BrowserRouter>
+      {/* <Nav submit={this.submitHandler}/> */}
       <Nav/>
       <Switch>
         <Route path="/" exact component={Main}/>
         {/* <Route path="/offline/:id" render={clickHandler(props)}/> */}
-        <Route path="/offline/:category?" render={(props) => <Offline {...props}/>}/>
+        <Route path="/offline/:category/:id?" render={(props) => <Offline {...props}/>}/>
         <Route path="/profile" component={Profile}/>
         <Route path="/setting" exact component={Setting}/>
         <Route path="/interest" exact component={Interest}/>
@@ -25,6 +40,8 @@ function App() {
       </Switch>
     </BrowserRouter>
   );
+
+}
 }
 
 export default App;

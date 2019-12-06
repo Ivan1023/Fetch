@@ -1,6 +1,6 @@
 import React from 'react'
 import { slide as Menu } from 'react-burger-menu'
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import './Nav.scss';
 import logoOrangeBackground from '../../assets/logo/fetchOrange.png';
 import logoOrangeText from '../../assets/logo/fetchOrangeText.png';
@@ -8,14 +8,15 @@ import search from '../../assets/icons/Icon-search.svg'
 
 class Nav extends React.Component {
     state = {
-        menuOpen: false
+        menuOpen: false, 
+        "searchCategory": ''
     }
 
     handleStateChange (state) {
         this.setState({menuOpen: state.isOpen})  
     }
 
-    closeMenu () {
+    closeMenu = () => {
         this.setState({menuOpen: false})
     }
 
@@ -23,9 +24,38 @@ class Nav extends React.Component {
         this.setState(state => ({menuOpen: !state.menuOpen}))
     }
 
+    // changeHandler = (event) =>{
+    //     event.preventDefault()
+    //     // console.log(event.target)
+    //     this.setState ({[event.target.name]: event.target.value})
+    //     // this.props.submit(event)
+    //     // this.setState({
+    //     //     menuOpen: false,
+    //     //     redirect: true
+    //     // })
+        
+    //     // if (!this.state.redirect) {
+    //     //     console.log("redirect");
+            
+    //     //     return <Redirect to='/search'/>;
+    //     //     } else {
+    //     //         console.log("not redirect");
+                
+    //     //     }
+    //     //   return <RenderYourForm/>;
+
+    // }
+
+    // sendSearch = () => {
+    //     console.log(this.state.searchCategory)
+    //     this.props.submit(this.state.searchCategory)
+    // }
+    
 
     render(){
-        // console.log(this.props.function)
+        console.log(this.props)
+        console.log(this.state)
+        const {searchCategory} = this.state
         return(
             <nav className="nav">
                 
@@ -33,7 +63,7 @@ class Nav extends React.Component {
                         isOpen={this.state.menuOpen}
                         onStateChange={(state) => this.handleStateChange(state)}
                         >
-                        <Link to={'/'}><img onClick={() => this.closeMenu()} src={logoOrangeText} className="logo"></img></Link>
+                        <Link to={'/topstories'}><img onClick={() => this.closeMenu()} src={logoOrangeText} className="logo" alt="article cover"></img></Link>
                         <Link to={'/profile'}><p onClick={() => this.closeMenu()}>Profile</p></Link>
                         <Link to={'/setting'}><p onClick={() => this.closeMenu()} className="spacing">Setting</p></Link>
                         <Link to={'/topstories'}><p onClick={() => this.closeMenu()}>Top Stories</p></Link>
@@ -42,15 +72,24 @@ class Nav extends React.Component {
                         <Link to={'/science'}><p onClick={() => this.closeMenu()}>Science</p></Link>
                         <Link to={'/sports'}><p onClick={() => this.closeMenu()}>Sports</p></Link>
                         <Link to={'/technology'}><p onClick={() => this.closeMenu()}>Technology</p></Link>
-                        <Link to={'/search'}>
-                            <form className="nav__form">
-                                <textarea className="nav__search" type="text" placeholder="Search"></textarea>
-                                <img className="nav__button" onClick={() => this.closeMenu()} src={search}></img>
-                            </form>
-                        </Link>
+                        
+                        
+                        <form className="nav__form" onSubmit={this.sendSearch}>
+                            
+                            <textarea  className="nav__search" type="text" onChange={this.changeHandler} value={searchCategory} name="searchCategory" placeholder="Search"></textarea>
+                            
+                            {/* <Link to={'/search'} className="nav__a"> */}
+                                <button onClick={() => this.closeMenu()} className="nav__button" type="button" alt="search icon">
+                                    <img src={search}/>
+                                </button>
+                            {/* </Link> */}
+                        
+                        </form>
+                    
+                    
                     </Menu>
                     <div className="nav__logo">
-                        <Link to={'/'}><img src={logoOrangeBackground} className="nav__logo"></img></Link>
+                        <Link to={'/topstories'}><img src={logoOrangeBackground} className="nav__logo" alt="app logo"></img></Link>
                     </div>
                 
             </nav>

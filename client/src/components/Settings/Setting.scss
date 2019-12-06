@@ -6,9 +6,28 @@
         width: 100%;
         padding:26px 20px;
     }
+
+    &__display {
+        display: flex;
+        justify-content: space-between;
+
+        &__quanity {
+            width: 20px;
+            height: 20px;
+            padding: 0 5px;
+            margin: 0 20px 0 0;
+            border: 1px solid black;
+            border-radius: 4px;
+            text-align: center;
+            resize: none;
+            outline: none;
+        }
+    }
 }
 
-p {
+
+
+h4, p {
     margin: 0;
     padding: 0 0 15px 0
 }
