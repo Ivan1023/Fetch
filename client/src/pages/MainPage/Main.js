@@ -3,7 +3,10 @@ import Axios from 'axios'
 import Card from '../../components/ArticleCard/ArticleCard'
 import CardOffline from '../../components/ArticleCardOffline/ArticleCardOffline'
 import search from '../../assets/icons/Icon-search.svg'
+import Modal from 'react-modal'
 import './Main.scss'
+
+
 
 class Main extends React.Component {
     state = {
@@ -11,7 +14,7 @@ class Main extends React.Component {
         articleLink: ''
     }
 
-    
+   
     componentDidMount() {
         // get google api via express server
         Axios.get('http://localhost:8080/topstories')
@@ -151,7 +154,12 @@ class Main extends React.Component {
                     JSON.parse(clickedCategory).map(articleArray => (<CardOffline key={articleArray.url} article={articleArray} function={this.renderArticle}/>))
                     )
                 }
-                <button className="main__search" alt="search icon"><img className="main__button" src={search}/></button>
+                <form className="main__search">
+                    <input className="main__txt" placeholder="What are you searching for?"/>
+                    <div className="main__button">
+                        <img className="main__icon" src={search}/>
+                    </div>  
+                </form>  
             </div>
         )
     }

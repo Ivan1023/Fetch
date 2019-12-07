@@ -3,17 +3,51 @@
     background-color: white;
 
     &__search {
-        width: 90px;
-        height: 90px;
-        background-color: #ff7810;
-        border: none;
-        border-radius: 50%;
         position: fixed;
         bottom: 20px;
         right: 20px;
-        opacity: 0.9;
-    }
-    &__button {
+        background: #ff7810;
         height: 40px;
+        border-radius: 40px;
+        padding: 10px;
+        box-shadow: 1px 1px 7px rgb(39, 39, 39);
     }
+
+    &__button {
+        color: #ff7810;
+        float: right;
+        width: 40px;
+        height: 40px;
+        border: none;
+        border-radius: 50%;
+        background: #ff7810;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__txt {
+        border: none;
+        background: none;
+        outline: none;
+        float:left;
+        padding: 0;
+        color: black;
+        font-size: 16px;
+        transition: 0.3s;
+        line-height: 40px;
+        width: 0;
+        
+    }   
+
 }
+
+.main__search:hover > .main__txt {
+    width: 275px;
+    background: white;
+}
+
+.main__search:hover {
+    background: white;
+}
+
