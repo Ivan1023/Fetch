@@ -43,7 +43,10 @@ class Offline extends React.Component {
         if (data.category === "technology"){
             return "technologyParsedContent"
         }
-        if (data.category === "topstories" || ""){
+        if (data.category === "search"){
+            return "searchTopicParsedContent"
+        }
+        if (data.category === "topstories" || "" || "undefined" || "null"){
             return "parsedContent"
         }
     }
@@ -51,10 +54,12 @@ class Offline extends React.Component {
 
     render() {
         console.log(this.props.match.params)
+        console.log(this.state.offlineArticle)
         return(
             <div className="container">
-                <p>Offline Mode</p>
-                {this.state.offlineArticle ? <div className="content" dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.offlineArticle.content)}}></div> : null}
+                <h3>Offline Mode</h3>
+                {this.state.offlineArticle ? <div className="content" dangerouslySetInnerHTML={this.state.offlineArticle.content ? {__html: DOMPurify.sanitize(this.state.offlineArticle.content)}: {__html:"No content available from website"}}></div> 
+                : <p>No content available from website</p>}
             </div>
         )
     }

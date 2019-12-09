@@ -3,7 +3,7 @@ import Axios from 'axios'
 import Card from '../../components/ArticleCard/ArticleCard'
 import CardOffline from '../../components/ArticleCardOffline/ArticleCardOffline'
 import search from '../../assets/icons/Icon-search.svg'
-import Modal from 'react-modal'
+import { Link } from 'react-router-dom';
 import './Main.scss'
 
 
@@ -11,7 +11,8 @@ import './Main.scss'
 class Main extends React.Component {
     state = {
         articleData: [],
-        articleLink: ''
+        articleLink: '',
+        searchContent: ''
     }
 
    
@@ -72,7 +73,10 @@ class Main extends React.Component {
         if (data.category === "technology"){
             return "technologyParsedContent"
         }
-        if (data.category === "topstories" || ""){
+        if (data.category === "search"){
+            return "searchTopicParsedContent"
+        }
+        if (data.category === "topstories" || "" || "undefined" || "null"){
             return "parsedContent"
         }
     }
@@ -140,26 +144,79 @@ class Main extends React.Component {
         if (data.category === "topstories" || ""){
             return "topstoriesContent"
         }
+        if (data.category === "search" || ""){
+            return "searchTopicContent"
+        }
     }
 
+    changeHandler = (event) => {
+        if (event.target.value !== '') {
+            this.setState({
+            [event.target.name]: event.target.value
+            })
+        }
+    }
+
+    submitHandler = (event) => {
+    event.preventDefault();
+    const route = this.props.match.params
+
+    Axios.post('http://localhost:8080/search', {
+        "search": this.state.searchContent
+        
+    })
+        .then(response => {
+
+            console.log(response)
+            this.parse(response.data)
+
+            // set state of all article cards to display data
+            this.setState({
+                articleData: response.data
+            });
+
+            sessionStorage.setItem(this.findCategory(route),JSON.stringify(response.data));
+        })
+        .catch(error => {
+            alert("Something went wrong. We could not get you articles")
+        })
+    }
+      
+
     render(){
+        console.log(this.state.searchContent)
+        console.log(this.props.match.params)
+        
+
         const categoryName = this.props.match.params
         const clickedCategory = sessionStorage.getItem(this.findCategory(categoryName));
+        const presetData = sessionStorage.getItem("parsedContent")
+        console.log(categoryName)
+        console.log(clickedCategory)
+        console.log(presetData)
         return(
             //render articles if internet is true, if not then render offline article once clicked
             <div className="main">
                 {window.navigator.onLine ? (
                     this.state.articleData ? this.state.articleData.map(articleArray => (<Card key={articleArray.url} article={articleArray} function={this.renderArticle}/>)): null 
                     ) : (
-                    JSON.parse(clickedCategory).map(articleArray => (<CardOffline key={articleArray.url} article={articleArray} function={this.renderArticle}/>))
+                    JSON.parse(clickedCategory).map(articleArray => (<CardOffline key={articleArray.url} article={articleArray} function={this.renderArticle}/>)) 
                     )
                 }
-                <form className="main__search">
-                    <input className="main__txt" placeholder="What are you searching for?"/>
+                {/* {window.navigator.onLine ? (
+                    this.state.articleData ? this.state.articleData.map(articleArray => (<Card key={articleArray.url} article={articleArray} function={this.renderArticle}/>)): null 
+                    ) : (
+                    clickedCategory ? JSON.parse(clickedCategory).map(articleArray => (<CardOffline key={articleArray.url} article={articleArray} function={this.renderArticle}/>)) 
+                    :
+                    JSON.parse(presetData).map(articleArray => (<CardOffline key={articleArray.url} article={articleArray} function={this.renderArticle}/>))
+                    )
+                } */}
+                <Link to={'/search'}><form className="main__search" onSubmit={this.submitHandler} >
+                    <input onChange={this.changeHandler} value={this.state.searchContent} name="searchContent" className="main__txt" placeholder="What are you searching for?"/>
                     <div className="main__button">
-                        <img className="main__icon" src={search}/>
+                        <img className="main__icon" src={search} alt="search icon"/>
                     </div>  
-                </form>  
+                </form></Link>  
             </div>
         )
     }
