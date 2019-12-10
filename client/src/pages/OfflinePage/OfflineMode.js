@@ -13,13 +13,18 @@ class Offline extends React.Component {
 
         const storeData = sessionStorage.getItem(this.parseCategory(category));
         console.log(storeData)
+        console.log(category)
 
-        const findObject = JSON.parse(storeData).find(({data})=>{            
+        const findObject = JSON.parse(storeData).find(({data})=>{   
+            console.log(data)  
+            console.log(this.props.match.params)       
             if(this.props.match.params.id === data.id){
+                console.log(data)
                 return data;
+                
             }
         })
-
+        console.log(findObject)
         if (!this.state.offlineArticle
             || this.props.match.params.id !== this.state.offlineArticle.id) {
             this.setState({offlineArticle: findObject.data})
@@ -43,7 +48,7 @@ class Offline extends React.Component {
         if (data.category === "technology"){
             return "technologyParsedContent"
         }
-        if (data.category === "search"){
+        if (data.category === "search"|| "" || "undefined" || "null"){
             return "searchTopicParsedContent"
         }
         if (data.category === "topstories" || "" || "undefined" || "null"){

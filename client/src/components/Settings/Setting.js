@@ -15,6 +15,16 @@ class Setting extends React.Component{
                         <p>Article Per Page</p>
                         <textarea className="profile__display__quanity" placeholder="10"></textarea>
                     </div>
+                    <div className="profile__display">
+                        <p>Article Size</p>
+                        <select>
+                            <option>Small</option>
+                            <option>Medium</option>
+                            <option>Large</option>
+                        </select>
+                    </div>
+                    
+
                 </div>
             </div>
         )
