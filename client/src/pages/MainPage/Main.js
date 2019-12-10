@@ -27,7 +27,7 @@ class Main extends React.Component {
                 articleData: response.data
             });
 
-            sessionStorage.setItem("googleContent",JSON.stringify(response.data));
+            sessionStorage.setItem("topstoriesContent",JSON.stringify(response.data));
             
         })
         .catch(response => {
@@ -35,7 +35,7 @@ class Main extends React.Component {
         })
     }
 
-    //this is being called at did mount
+    //function to parse data that google responded with
     parse(article){
        
         const articleUrls = []
@@ -55,8 +55,9 @@ class Main extends React.Component {
         });
     }
 
+    //function to change the name of session storage parsed data to categorize by topic
     parseCategory = (data) => {
-        
+        console.log("PARSED DATA",data.category)
         if (data.category === "entertainment"){
             return "entertainmentParsedContent"
         }
@@ -72,14 +73,15 @@ class Main extends React.Component {
         if (data.category === "technology"){
             return "technologyParsedContent"
         }
+        if (data.category === "topstories" || typeof data.category === 'undefined'){
+            return "topstoriesParsedContent"
+        }
         if (data.category === "search"){
             return "searchTopicParsedContent"
         }
-        if (data.category === "topstories" || "" || "undefined" || "null"){
-            return "parsedContent"
-        }
     }
 
+    //function to check to see if app has internet connection
     renderArticle = (article) => {
 
         if(window.navigator.onLine === true){
@@ -98,6 +100,7 @@ class Main extends React.Component {
         }
     }
    
+    //function for side menu topics and how it calls the api and where data is sent
     componentDidUpdate(prevProps){
         const route = this.props.match.params
         
@@ -124,8 +127,9 @@ class Main extends React.Component {
         })
     }
 
+    // function to change name of session storage for google data categorized by topic
     findCategory = (data) => {
-        console.log(data)
+        console.log("GOOGLE", data.category)
         
         if (data.category === "entertainment"){
             return "entertainmentContent"
@@ -142,14 +146,17 @@ class Main extends React.Component {
         if (data.category === "technology"){
             return "technologyContent"
         }
-        if (data.category === "topstories" || ""){
+        if (data.category === "topstories" || typeof data.category === "undefined"){
             return "topstoriesContent"
         }
-        if (data.category === "search" || "" || undefined){
+        if (data.category === "search"){
             return "searchTopicContent"
         }
     }
 
+    // ----search----
+
+    //set state of user search input
     changeHandler = (event) => {
         if (event.target.value !== '') {
             this.setState({
@@ -158,16 +165,18 @@ class Main extends React.Component {
         }
     }
 
+    //function for how search is being parsed daat follows
     submitHandler = (event) => {
     event.preventDefault();
-    const route = this.props.match.params
-    console.log(route)
+    
+    this.props.history.push(`/search`);
+
     Axios.post('http://localhost:8080/search', {
         "search": this.state.searchContent
         
     })
         .then(response => {
-
+            const route = this.props.match.params
             
             this.parse(response.data)
 
@@ -178,7 +187,7 @@ class Main extends React.Component {
             
             sessionStorage.setItem(this.findCategory(route),JSON.stringify(response.data));
 
-            this.props.history.push(`/search`);
+            
             window.scrollTo(0, 0)
         })
         .catch(error => {
@@ -190,10 +199,7 @@ class Main extends React.Component {
     render(){
         const categoryName = this.props.match.params
         const clickedCategory = sessionStorage.getItem(this.findCategory(categoryName));
-        const presetData = sessionStorage.getItem("parsedContent")
-        console.log(categoryName)
-        // console.log(clickedCategory)
-        // console.log(presetData)
+        
         return(
             //render articles if internet is true, if not then render offline article once clicked
             <div className="main">
@@ -202,8 +208,7 @@ class Main extends React.Component {
                     ) : (
                     JSON.parse(clickedCategory).map(articleArray => (<CardOffline key={articleArray.url} article={articleArray} function={this.renderArticle}/>)) 
                     )
-                }
-                
+                } 
                 <form className="main__search" onSubmit={this.submitHandler} >
                     <input onChange={this.changeHandler} value={this.state.searchContent} name="searchContent" className="main__txt" placeholder="What are you searching for?"/>
                     <div className="main__button">

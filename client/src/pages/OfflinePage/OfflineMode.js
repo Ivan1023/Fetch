@@ -31,6 +31,7 @@ class Offline extends React.Component {
         }
     }
 
+    //function to change the name of session storage parsed data to categorize by topic
     parseCategory = (data) => {
         
         if (data.category === "entertainment"){
@@ -48,11 +49,11 @@ class Offline extends React.Component {
         if (data.category === "technology"){
             return "technologyParsedContent"
         }
-        if (data.category === "search"|| "" || "undefined" || "null"){
+        if (data.category === "search"|| "" ){
             return "searchTopicParsedContent"
         }
-        if (data.category === "topstories" || "" || "undefined" || "null"){
-            return "parsedContent"
+        if (data.category === "topstories" || data.category === "undefined"){
+            return "topstoriesParsedContent"
         }
     }
 
